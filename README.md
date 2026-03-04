@@ -4,7 +4,7 @@
 This C++ program reads coordinate data from an input file, creates a 2D array, fills it with block characters at specified positions, and prints the result to reveal block-annotated letters.
 
 ## Author
-- **Name:** [Your Name]
+- **Name:** Allen Poston
 - **Date:** March 4, 2026
 - **Course:** CSCI101
 
@@ -57,7 +57,7 @@ Where:
 - `character` - Block character (█ or ░)
 
 ## Output
-The program displays a 7-row by 90-column grid of block characters (█ and ░) that spell "FIDM TECH" when viewed together.
+The program displays a 7-row by 90-column grid of block characters (█ and ░) that spell "EICMDKO" when viewed together.
 
 Example output:
 ```
