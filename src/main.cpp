@@ -1,11 +1,11 @@
 /**
  * M08 Final Project - Block Letter Display Program
- * 
- * This program reads coordinate data from an input file, creates a 2D array,
+ *
+ * reads coordinate data from an input file, creates a 2D array,
  * fills it with characters at specified positions, and prints the result
  * to reveal block-annotated letters.
- * 
- * Author: [Your Name Here]
+ *
+ * Author: Allen Poston
  * Date: March 4, 2026
  * Course: CSCI101
  */
@@ -21,21 +21,14 @@
 
 using namespace std;
 
-/**
- * Structure to hold a single data point with x, y coordinates and character string
- */
+// holds a single data point with x, y coordinates and character
 struct DataPoint {
     int x;
     int y;
     string character;
 };
 
-/**
- * Reads input data from a file and returns a vector of DataPoint structures
- * 
- * @param filename The path to the input file
- * @return Vector containing all data points read from the file
- */
+// reads input data from a file and returns a vector of DataPoint structures
 vector<DataPoint> readInputData(const string& filename) {
     vector<DataPoint> dataPoints;
     ifstream inputFile(filename);
@@ -61,48 +54,27 @@ vector<DataPoint> readInputData(const string& filename) {
     return dataPoints;
 }
 
-/**
- * Finds the maximum x and y coordinates from the data points
- * 
- * @param dataPoints Vector of data points to analyze
- * @param maxX Reference to store the maximum x coordinate
- * @param maxY Reference to store the maximum y coordinate
- */
+// finds the maximum x and y coordinates from the data points
 void findMaxDimensions(const vector<DataPoint>& dataPoints, int& maxX, int& maxY) {
     maxX = 0;
     maxY = 0;
     
     for (const DataPoint& point : dataPoints) {
-        if (point.x > maxX) {
-            maxX = point.x;
-        }
-        if (point.y > maxY) {
-            maxY = point.y;
-        }
+        if (point.x > maxX) maxX = point.x;
+        if (point.y > maxY) maxY = point.y;
     }
     
     cout << "Maximum dimensions: X = " << maxX << ", Y = " << maxY << endl;
 }
 
-/**
- * Initializes a 2D array with spaces
- * 
- * @param rows Number of rows in the array
- * @param cols Number of columns in the array
- * @return 2D vector initialized with space strings
- */
+// initializes a 2D array with spaces
 vector<vector<string>> initializeArray(int rows, int cols) {
     vector<vector<string>> array(rows, vector<string>(cols, " "));
     cout << "Initialized " << rows << " x " << cols << " array with spaces." << endl;
     return array;
 }
 
-/**
- * Fills the 2D array with characters from the data points
- * 
- * @param array Reference to the 2D array to fill
- * @param dataPoints Vector of data points containing coordinates and characters
- */
+// fills the 2D array with characters from the data points
 void fillArray(vector<vector<string>>& array, const vector<DataPoint>& dataPoints) {
     for (const DataPoint& point : dataPoints) {
         if (point.y >= 0 && point.y < static_cast<int>(array.size()) &&
@@ -113,11 +85,7 @@ void fillArray(vector<vector<string>>& array, const vector<DataPoint>& dataPoint
     cout << "Filled array with " << dataPoints.size() << " characters." << endl;
 }
 
-/**
- * Prints the 2D array to the console to reveal the block letters
- * 
- * @param array The 2D array to print
- */
+// prints the 2D array to the console to reveal the block letters
 void printArray(const vector<vector<string>>& array) {
     cout << "\n========== BLOCK LETTER OUTPUT ==========\n" << endl;
     
@@ -131,11 +99,8 @@ void printArray(const vector<vector<string>>& array) {
     cout << "\n==========================================\n" << endl;
 }
 
-/**
- * Main function - orchestrates the program flow
- */
 int main() {
-    // Set console output mode for UTF-8 on Windows
+    // set console output mode for UTF-8 on Windows
     #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
     #endif
@@ -143,7 +108,6 @@ int main() {
     cout << "M08 Final Project - Block Letter Display Program" << endl;
     cout << "================================================\n" << endl;
     
-    // Step 1: Read input data from file
     string filename = "data/input_data.txt";
     vector<DataPoint> dataPoints = readInputData(filename);
     
@@ -152,20 +116,15 @@ int main() {
         return 1;
     }
     
-    // Step 2: Determine maximum x and y coordinates
     int maxX, maxY;
     findMaxDimensions(dataPoints, maxX, maxY);
     
-    // Step 3: Create and initialize 2D array with spaces
-    // Array size is maxY+1 rows by maxX+1 columns (0-indexed)
+    // array size is maxY+1 rows by maxX+1 cols (0-indexed)
     int rows = maxY + 1;
     int cols = maxX + 1;
     vector<vector<string>> displayArray = initializeArray(rows, cols);
     
-    // Step 4: Fill the array with characters from input data
     fillArray(displayArray, dataPoints);
-    
-    // Step 5: Print the array to reveal the block letters
     printArray(displayArray);
     
     cout << "Program completed successfully!" << endl;
