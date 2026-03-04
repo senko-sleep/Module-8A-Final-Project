@@ -1,0 +1,60 @@
+# UML Diagram - M08 Final Project
+
+## Structure: DataPoint
+
+DataPoint
+- x : int
+- y : int
+- character : string
+
+## Main Module Functions
+
+BlockLetterDisplay
+- main() : int
+- readInputData(filename: string) : vector<DataPoint>
+- findMaxDimensions(dataPoints: vector<DataPoint>, maxX: int&, maxY: int&) : void
+- initializeArray(rows: int, cols: int) : vector<vector<string>>
+- fillArray(array: vector<vector<string>>&, dataPoints: vector<DataPoint>) : void
+- printArray(array: vector<vector<string>>) : void
+
+## Function Call Sequence
+
+1. main() starts
+2. main() calls readInputData(filename)
+   - Returns vector<DataPoint>
+3. main() checks if dataPoints is empty
+4. main() calls findMaxDimensions(dataPoints, maxX, maxY)
+   - Sets maxX and maxY by reference
+5. main() calculates rows and cols
+6. main() calls initializeArray(rows, cols)
+   - Returns 2D vector array
+7. main() calls fillArray(array, dataPoints)
+   - Modifies array by reference
+8. main() calls printArray(array)
+   - Displays output to console
+9. main() returns 0
+
+## Data Flow
+
+Input File -> readInputData() -> vector<DataPoint>
+vector<DataPoint> -> findMaxDimensions() -> maxX, maxY
+maxX, maxY -> Calculate -> rows, cols
+rows, cols -> initializeArray() -> 2D array (spaces)
+2D array + vector<DataPoint> -> fillArray() -> 2D array (filled)
+2D array (filled) -> printArray() -> Console Output
+
+## Component Layers
+
+Input Layer:
+- File I/O
+- readInputData()
+
+Processing Layer:
+- Data parsing
+- findMaxDimensions()
+- initializeArray()
+- fillArray()
+
+Output Layer:
+- Console display
+- printArray()

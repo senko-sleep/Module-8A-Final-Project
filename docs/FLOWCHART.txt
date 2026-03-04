@@ -1,0 +1,65 @@
+# Program Flowchart - M08 Final Project
+
+## Main Program Flow
+
+1. START
+2. Set console to UTF-8 mode
+3. Display program title
+4. Call readInputData() with filename "data/input_data.txt"
+5. Check if dataPoints is empty
+   - If YES: Display error and exit with code 1
+   - If NO: Continue
+6. Call findMaxDimensions() to get maxX and maxY
+7. Calculate rows = maxY + 1, cols = maxX + 1
+8. Call initializeArray(rows, cols) to create 2D array
+9. Call fillArray(array, dataPoints) to populate array
+10. Call printArray(array) to display block letters
+11. Display "Program completed successfully"
+12. Return 0
+13. END
+
+## Function: readInputData(filename)
+
+1. Create empty dataPoints vector
+2. Open input file
+3. If file fails to open:
+   - Display error message
+   - Return empty vector
+4. While data remains in file:
+   - Read x, y, character
+   - Create DataPoint and add to vector
+5. Close file
+6. Display count of points read
+7. Return dataPoints vector
+
+## Function: findMaxDimensions(dataPoints, maxX, maxY)
+
+1. Initialize maxX = 0, maxY = 0
+2. For each point in dataPoints:
+   - If point.x > maxX: maxX = point.x
+   - If point.y > maxY: maxY = point.y
+3. Display maximum dimensions
+4. Return via reference parameters
+
+## Function: initializeArray(rows, cols)
+
+1. Create 2D vector of size rows x cols
+2. Fill all positions with space character
+3. Display initialization message
+4. Return array
+
+## Function: fillArray(array, dataPoints)
+
+1. For each point in dataPoints:
+   - Validate coordinates are within bounds
+   - If valid: array[point.y][point.x] = point.character
+2. Display count of characters filled
+
+## Function: printArray(array)
+
+1. Display header line
+2. For each row in array:
+   - For each character in row:
+     - Print character without newline
+   - Print newline after row
+3. Display footer line
